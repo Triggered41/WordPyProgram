@@ -1,22 +1,33 @@
 import os
-from posixpath import dirname
+
+
+os.system("clear")
+run = ["open", "show", "run", "tell", "where", "plz", "do", "what", "screen"]
+def can_run():
+    for i in range(len(run)):
+        if run[i] in inp:
+            return True
 
 while True:
-    print("=========================World of automation=========================")
+    
+    print("===============World of automation===============\n")
 
-    print("Please tell what you want me to do")
-
+    print("Please tell what you want me to do: ", end = '')
+    
     inp = input()
     inp = inp.lower()
-    if ("open" in inp) or ("show" in inp) or ("run" in inp) or ("tell" in inp) or ("where" in inp):
+    
+    if (can_run()):
+        print("\n")
         if ("clear" in inp):
             os.system("clear")
-        elif ("list" in inp):
+        elif ("list" in inp) or ("directory" in inp):
             os.system("ls")
         elif ("print" in inp):
-            print("Plz Enter what you wnat me to print")
+            print("text to print: ", end = '')
             text = input()
-            os.system("echo " + text)
+            print("\n")
+            os.system("echo " + str(text))
         elif ("make" in inp) or ("create" in inp):
             print("What do you wnat to name the directory")
             dir_name = input()
@@ -31,8 +42,8 @@ while True:
             os.system("time")
         elif ("sleep" in inp):
             print("for how long you want me to sleep")
-            t = int(input())
-            os.system("sleep" + t)
+            t = str(input())
+            os.system("sleep " + t)
         elif ("ipaddress" in inp):
             os.system("ipconfig")
         elif ("copy" in inp):
@@ -41,7 +52,7 @@ while True:
             print("Where?")
             destination = input()
             os.system("cp " + file_name + " " + destination)
-        elif ("check" in inp):
+        elif ("path" in inp):
             os.system("pwd")
         elif ("locate" in inp):
             os.system("locate")
@@ -71,5 +82,7 @@ while True:
             exit()
         else:
             print("Nothing Found!")
+        print("\n")
     else:
-            print("Nothin Found!")
+        print("\nI did not understand!\n")
+            
