@@ -1,11 +1,11 @@
 import os
 
-
 os.system("clear")
 run = ["open", "show", "run", "tell", "where", "plz", "do", "what", "screen"]
+
 def can_run():
     for i in range(len(run)):
-        if run[i] in inp:
+        if run[i] in user_input:
             return True
 
 while True:
@@ -14,71 +14,80 @@ while True:
 
     print("Please tell what you want me to do: ", end = '')
     
-    inp = input()
-    inp = inp.lower()
+    user_input = input()
+    user_input = user_input.lower()
     
     if (can_run()):
         print("\n")
-        if ("clear" in inp):
+        if ("clear" in user_input):
             os.system("clear")
-        elif ("list" in inp) or ("directory" in inp):
-            os.system("ls")
-        elif ("print" in inp):
-            print("text to print: ", end = '')
-            text = input()
+        elif ("list" in user_input) or ("directory" in user_input):
+            if ("all" in user_input) or ("everything" in user_input) or ("hidden" in user_input):
+                os.system("ls -a")
+            else:
+                os.system("ls")
+        elif ("print" in user_input):
+            text = input("text to print: ")
             print("\n")
             os.system("echo " + str(text))
-        elif ("make" in inp) or ("create" in inp):
-            print("What do you wnat to name the directory")
-            dir_name = input()
+        elif ("make" in user_input) or ("create" in user_input):
+            dir_name = input("name the directory: ")
             os.system("mkdir " + dir_name)
-        elif ("processes" in inp):
-            os.system("top")
-        elif ("calendar" in inp):
+        elif ("processes" in user_input):
+            os.system("ps -a")
+        elif ("calendar" in user_input):
             os.system("cal")
-        elif ("date" in inp):
+        elif ("date" in user_input):
             os.system("date")
-        elif ("time" in inp):
+        elif ("time" in user_input):
             os.system("time")
-        elif ("sleep" in inp):
-            print("for how long you want me to sleep")
-            t = str(input())
+        elif ("sleep" in user_input):
+            t = str(input("for how many seconds: "))
             os.system("sleep " + t)
-        elif ("ipaddress" in inp):
-            os.system("ipconfig")
-        elif ("copy" in inp):
-            print("Which file? do you want to copy")
-            file_name = input()
-            print("Where?")
-            destination = input()
+        elif ("ipaddress" in user_input):
+            os.system("ifconfig")
+        elif ("copy" in user_input):
+            file_name = input("file to copy: ")
+            destination = input("path: ")
             os.system("cp " + file_name + " " + destination)
-        elif ("path" in inp):
+        elif ("path" in user_input) and ("current" in user_input):
             os.system("pwd")
-        elif ("locate" in inp):
+        elif ("locate" in user_input):
             os.system("locate")
-        elif ("find" in inp):
+        elif ("find" in user_input):
             os.system("find")
-        elif ("help" in inp):
-            os.system("--help")
-        elif ("create" in inp):
-            os.system("cat > ")
-        elif ("user" in inp):
+        elif ("help" in user_input):
+            cmd = input("for which command: ")
+            os.system(cmd + " --help")
+        elif ("create" in user_input) and ("file" in user_input):
+            file = input("name the file")
+            os.system("cat > " + file)
+        elif ("user" in user_input):
             os.system("whoami")
-        elif ("BG" in inp):
+        elif ("BG" in user_input):
             os.system("$")
-        elif ("manual" in inp):
+        elif ("manual" in user_input):
             os.system("man ")
-        elif ("bash" in inp):
-            os.system("bash ")
-        elif ("FG" in inp):
+        elif ("bash" in user_input):
+            file = input("path pf file: ")
+            os.system("bash " + file)
+        elif ("FG" in user_input):
             os.system("fg")
-        elif ("touch" in inp):
-            os.system("touch")
-        elif ("vi" in inp):
+        elif ("nano" in user_input):
+            name = input("name of file: ")
+            os.system("nano " + name)
+        elif ("touch" in user_input):
+            name = input("name files: ")
+            os.system("touch " + name)
+        elif ("vi" in user_input):
+            name = input("file name: ")
             os.system("vi")
-        elif ("vim" in inp):
+        elif ("vim" in user_input):
+            name = input("file name: ")
             os.system("vim")
-        elif ("exit" in inp):
+        elif ("path" in user_input):
+            os.system("echo $PATH")
+        elif ("exit" in user_input):
             exit()
         else:
             print("Nothing Found!")
