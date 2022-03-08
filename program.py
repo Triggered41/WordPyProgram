@@ -1,4 +1,3 @@
-from fileinput import filename
 import os
 from posixpath import dirname
 
@@ -70,6 +69,7 @@ while True:
             os.system("vim")
         elif ("exit" in inp):
             exit()
+        else:
+            print("Nothing Found!")
     else:
             print("Nothin Found!")
-    
